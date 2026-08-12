@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>旅游电子商务 · 模块一 · 任务三 · 分类与盈利模式</title>
+    <style>
+        /* ===== 全局重置 & 变量 ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --primary: #1a6bff;
+            --primary-light: #e8f0fe;
+            --primary-dark: #0d47a1;
+            --secondary: #00bcd4;
+            --bg: #f5f9ff;
+            --card-bg: #ffffff;
+            --text: #1a2332;
+            --text-light: #5a6b7c;
+            --border: #dce4ec;
+            --shadow: 0 8px 28px rgba(26, 107, 0.08);
+            --radius: 16px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --font: 'Segoe UI', 'PingFang SC', Roboto, system-ui, -apple-system, sans-serif;
+        }
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            padding: 20px 16px 60px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        /* ===== 头部 ===== */
+        .header {
+            background: linear-gradient(135deg, #0d47a1 0%, #1a6bff 60%, #42a5f5 100%);
+            color: #fff;
+            border-radius: var(--radius);
+            padding: 28px 36px 24px;
+            margin-bottom: 32px;
+            box-shadow: 0 12px 40px rgba(26, 107, 255, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+        .header::after {
+            content: '';
+            position: absolute;
+            top: -60%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 6px;
+        }
+        .header-top .school {
+            font-size: 1rem;
+            font-weight: 500;
+            opacity: 0.95;
+            letter-spacing: 0.5px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 4px 18px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .header-top .date {
+            font-size: 0.9rem;
+            opacity: 0.85;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 4px 16px;
+            border-radius: 30px;
+        }
+        .header-main {
+            position: relative;
+            z-index: 1;
+            margin-top: 8px;
+        }
+        .header-main h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+        .header-main h1 .sub {
+            font-size: 1.1rem;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-left: 12px;
+            background: rgba(255, 255, 255, 0.12);
+            padding: 0 16px;
+            border-radius: 30px;
+            display: inline-block;
+        }
+        .header-main .info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px 24px;
+            margin-top: 8px;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        .header-main .info span {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 2px 14px;
+            border-radius: 20px;
+        }
+        /* ===== 学习目标 ===== */
+        .goals {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 24px 30px;
+            margin-bottom: 32px;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--primary);
+        }
+        .goals h2 {
+            font-size: 1.1rem;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 8px 20px;
+        }
+        .goals-grid li {
+            list-style: none;
+            font-size: 0.95rem;
+            padding: 4px 0 4px 28px;
+            position: relative;
+            color: var(--text-light);
+        }
+        .goals-grid li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: 700;
+        }
+        .goals-grid .sz {
+            color: #b71c1c;
+        }
+        .goals-grid .sz::before {
+            content: '❤️';
+            color: #b71c1c;
+        }
+        /* ===== 知识点卡片（全部展开，无折叠） ===== */
+        .accordion {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+        .accordion-item {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            transition: border-color var(--transition);
+        }
+        .accordion-item:hover {
+            border-color: var(--primary);
+        }
+        .accordion-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 26px;
+            gap: 16px;
+            background: #fafcff;
+            border-bottom: 1px solid var(--border);
+            cursor: default;
+        }
+        .accordion-header .left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex: 1;
+            min-width: 0;
+        }
+        .accordion-header .badge {
+            font-size: 0.7rem;
+            font-weight: 600;
+            background: var(--primary);
+            color: #fff;
+            padding: 2px 12px;
+            border-radius: 20px;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .accordion-header .badge.green {
+            background: #2e7d32;
+        }
+        .accordion-header .title {
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--text);
+        }
+        .accordion-header .icon {
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+        .accordion-header .arrow {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            flex-shrink: 0;
+            transition: none;
+        }
+        /* 内容区域始终展开 */
+        .accordion-body {
+            padding: 6px 26px 28px;
+            background: #fff;
+            overflow: visible;
+            max-height: none;
+            transition: none;
+        }
+        .accordion-body .content {
+            color: var(--text-light);
+            font-size: 0.98rem;
+        }
+        .accordion-body .content p {
+            margin-bottom: 10px;
+        }
+        .accordion-body .content strong {
+            color: var(--text);
+        }
+        .accordion-body .content ul {
+            padding-left: 24px;
+            margin: 6px 0 12px;
+        }
+        .accordion-body .content ul li {
+            margin-bottom: 4px;
+        }
+        .case-box {
+            background: #f0f7ff;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-top: 14px;
+            border-left: 4px solid var(--secondary);
+            transition: background 0.2s;
+        }
+        .case-box:hover {
+            background: #e3f0ff;
+        }
+        .case-box .label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
+        .case-box .label::before {
+            content: '💡';
+            font-size: 1rem;
+        }
+        .case-box p {
+            margin: 0;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+        .mode-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 10px;
+            margin: 6px 0 8px;
+        }
+        .mode-grid .pill {
+            background: var(--primary-light);
+            padding: 2px 14px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            color: var(--primary-dark);
+            border: 1px solid rgba(26, 107, 255, 0.12);
+        }
+        /* ===== 课堂小测 ===== */
+        .quiz-section {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 32px 30px;
+            box-shadow: var(--shadow);
+            margin-top: 8px;
+            border: 1px solid var(--border);
+        }
+        .quiz-section h2 {
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+            color: var(--primary-dark);
+        }
+        .quiz-section .sub {
+            color: var(--text-light);
+            margin-bottom: 24px;
+            font-size: 0.95rem;
+        }
+        .quiz-item {
+            background: #fafcff;
+            border-radius: 12px;
+            padding: 18px 22px;
+            margin-bottom: 14px;
+            border: 1px solid var(--border);
+            transition: border-color 0.2s;
+        }
+        .quiz-item.correct {
+            border-color: #2e7d32;
+            background: #f1f9f0;
+        }
+        .quiz-item.wrong {
+            border-color: #c62828;
+            background: #fef0f0;
+        }
+        .quiz-item .q {
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 0.98rem;
+        }
+        .quiz-item .q .qnum {
+            color: var(--primary);
+            margin-right: 6px;
+        }
+        .quiz-item .options {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .quiz-item .options label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.15s;
+            font-size: 0.95rem;
+        }
+        .quiz-item .options label:hover {
+            background: var(--primary-light);
+        }
+        .quiz-item .options input[type="radio"] {
+            accent-color: var(--primary);
+            width: 17px;
+            height: 17px;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+        .quiz-item .feedback {
+            margin-top: 12px;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            display: none;
+        }
+        .quiz-item .feedback.show {
+            display: block;
+        }
+        .quiz-item .feedback.correct {
+            background: #e8f5e9;
+            color: #1e5a1e;
+        }
+        .quiz-item .feedback.wrong {
+            background: #ffebee;
+            color: #a51d1d;
+        }
+        .quiz-actions {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .btn {
+            padding: 12px 34px;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            font-family: var(--font);
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(26, 107, 255, 0.3);
+        }
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(26, 107, 255, 0.35);
+        }
+        .btn-secondary {
+            background: var(--border);
+            color: var(--text);
+        }
+        .btn-secondary:hover {
+            background: #c8d4e0;
+        }
+        .quiz-score {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-top: 16px;
+            padding: 12px 20px;
+            background: var(--primary-light);
+            border-radius: 12px;
+            display: inline-block;
+        }
+        /* ===== 课程思政专区 ===== */
+        .sizheng-section {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 32px 30px;
+            box-shadow: var(--shadow);
+            margin-top: 32px;
+            border-left: 5px solid #c62828;
+        }
+        .sizheng-section h2 {
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #b71c1c;
+            margin-bottom: 4px;
+        }
+        .sizheng-section .sub {
+            color: var(--text-light);
+            margin-bottom: 24px;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+        .sizheng-card {
+            background: #fafcff;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-bottom: 24px;
+            overflow: hidden;
+            transition: box-shadow 0.3s;
+        }
+        .sizheng-card:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+        }
+        .card-header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px 16px;
+            padding: 14px 22px;
+            background: #fff5f;
+            border-bottom: 1px solid var(--border);
+        }
+        .case-badge {
+            font-weight: 700;
+            color: #b71c1c;
+            font-size: 0.95rem;
+        }
+        .case-tag {
+            background: #ffebee;
+            color: #b71c1c;
+            padding: 2px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .case-date {
+            color: var(--text-light);
+            font-size: 0.8rem;
+            margin-left: auto;
+        }
+        .card-body {
+            padding: 20px 22px 24px;
+        }
+        .card-body h4 {
+            font-size: 0.95rem;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+        .case-brief p, .case-analysis ul, .case-interact p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+        .case-brief {
+            margin-bottom: 16px;
+        }
+        .case-brief strong {
+            color: var(--text);
+        }
+        .case-analysis {
+            background: #f0f7ff;
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin-bottom: 16px;
+            border-left: 4px solid var(--primary);
+        }
+        .case-analysis ul {
+            padding-left: 20px;
+            margin: 4px 0 0;
+        }
+        .case-analysis ul li {
+            margin-bottom: 6px;
+        }
+        .case-interact {
+            background: #fafafa;
+            border-radius: 10px;
+            padding: 16px 18px;
+            border: 1px dashed var(--border);
+        }
+        .case-interact .interact-options {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin: 6px 0 10px;
+        }
+        .case-interact .interact-options label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.92rem;
+        }
+        .case-interact .interact-options label:hover {
+            background: var(--primary-light);
+        }
+        .case-interact .interact-options input[type="radio"] {
+            accent-color: var(--primary);
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+        .btn-interact {
+            padding: 6px 24px;
+            border: none;
+            border-radius: 20px;
+            background: var(--primary);
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-interact:hover {
+            background: var(--primary-dark);
+        }
+        .interact-feedback {
+            margin-top: 10px;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 0.92rem;
+            display: none;
+        }
+        .interact-feedback.show {
+            display: block;
+        }
+        .interact-feedback.correct {
+            background: #e8f5e9;
+            color: #1e5a1e;
+            border-left: 4px solid #2e7d32;
+        }
+        .interact-feedback.wrong {
+            background: #ffebee;
+            color: #a51d1d;
+            border-left: 4px solid #c62828;
+        }
+        .sizheng-summary {
+            background: #fff8e1;
+            border-radius: 12px;
+            padding: 20px 24px;
+            border-left: 5px solid #f9a825;
+            margin-top: 8px;
+        }
+        .sizheng-summary h4 {
+            color: #e65100;
+            margin-bottom: 6px;
+        }
+        .sizheng-summary p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            line-height: 2;
+        }
+        .sizheng-summary strong {
+            color: var(--text);
+        }
+        /* ===== 页脚 ===== */
+        .footer {
+            text-align: center;
+            padding: 32px 0 8px;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+        /* ===== 响应式 ===== */
+        @media (max-width: 640px) {
+            .header {
+                padding: 20px 18px 18px;
+            }
+            .header-top {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 6px;
+            }
+            .header-main h1 {
+                font-size: 1.6rem;
+            }
+            .header-main h1 .sub {
+                font-size: 0.9rem;
+                margin-left: 0;
+                display: block;
+                margin-top: 4px;
+                padding: 0 12px;
+            }
+            .header-main .info {
+                font-size: 0.85rem;
+                gap: 8px;
+            }
+            .goals {
+                padding: 18px 20px;
+            }
+            .goals-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 4px 12px;
+            }
+            .accordion-header {
+                padding: 14px 16px;
+            }
+            .accordion-header .title {
+                font-size: 0.95rem;
+            }
+            .accordion-body {
+                padding: 4px 16px 20px;
+            }
+            .quiz-section, .sizheng-section {
+                padding: 22px 16px;
+            }
+            .quiz-item, .card-body {
+                padding: 14px 16px;
+            }
+            .btn {
+                padding: 10px 24px;
+                font-size: 0.9rem;
+            }
+            .card-header {
+                padding: 12px 16px;
+            }
+            .case-tag, .case-date {
+                font-size: 0.7rem;
+            }
+            .mode-grid {
+                gap: 4px 8px;
+            }
+        }
+        @media (max-width: 420px) {
+            .goals-grid {
+                grid-template-columns: 1fr;
+            }
+            .header-main .info {
+                row-gap: 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- ===== 头部 ===== -->
+        <header class="header">
+            <div class="header-top">
+                <span class="school">🏫 漳州高新职业技术学校</span>
+                <span class="date">📅 2026年</span>
+            </div>
+            <div class="header-main">
+                <h1>
+                    模块一 · 任务三
+                    <span class="sub">认识旅游电子商务分类与盈利模式</span>
+                </h1>
+                <div class="info">
+                    <span>📌 七种分类模式</span>
+                    <span>💰 B2B & B2C 盈利模式</span>
+                    <span>❤️ 课程思政融入</span>
+                </div>
+            </div>
+        </header>
+        <!-- ===== 学习目标 ===== -->
+        <section class="goals">
+            <h2>🎯 学习目标</h2>
+            <ul class="goals-grid">
+                <li>掌握旅游电子商务的七种分类（B2B、B2C、C2C、C2B、B2B2C、B2G、O2O）</li>
+                <li>理解B2B的五大盈利模式（广告、订阅、佣金、销售、会员）</li>
+                <li>掌握B2C的主要盈利方式（广告、订阅、交易费、销售）</li>
+                <li>能结合具体平台分析其商业模式与盈利方式</li>
+                <li class="sz">❤️ 课程思政：创新变革 · 契约精神 · 法治意识 · 合规经营</li>
+            </ul>
+        </section>
+        <!-- ===== 知识点卡片（全部展开） ===== -->
+        <div class="accordion">
+            <!-- 知识点1 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <div class="left">
+                        <span class="icon">📂</span>
+                        <span class="badge">分类</span>
+                        <span class="title">1. 旅游电子商务的七种分类</span>
+                    </div>
+                    <span class="arrow">▾</span>
+                </div>
+                <div class="accordion-body">
+                    <div class="content">
+                        <p>根据交易主体不同，旅游电子商务可分为以下七种模式：</p>
+                        <div class="mode-grid">
+                            <span class="pill">B2B（企业→企业）</span>
+                            <span class="pill">B2C（企业→消费者）</span>
+                            <span class="pill">C2C（消费者→消费者）</span>
+                            <span class="pill">C2B（消费者→企业）</span>
+                            <span class="pill">B2B2C（供应商→平台→消费者）</span>
+                            <span class="pill">B2G（企业→政府）</span>
+                            <span class="pill">O2O（线上线下融合）</span>
+                        </div>
+                        <ul>
+                            <li><strong>B2B</strong>：企业间交易，如旅行社批发酒店房源、地接社拼团。典型平台：旅游通、八爪鱼。</li>
+                            <li><strong>B2C</strong>：企业对消费者，如携程、途牛在线零售。流程：信息获取→自主设计→预订支付。</li>
+                            <li><strong>C2C</strong>：消费者间交易，如小猪短租、蚂蚁短租。流程：买家→平台→卖家。</li>
+                            <li><strong>C2B</strong>：消费者提出需求，企业竞标（如定制游）。</li>
+                            <li><strong>B2B2C</strong>：供应商→平台→消费者，平台整合资源服务终端。</li>
+                            <li><strong>B2G</strong>：企业与政府间的交易（如政府采购差旅服务）。</li>
+                            <li><strong>O2O</strong>：线上预订、线下体验（如景区扫码入园）。</li>
+                        </ul>
+                        <div class="case-box">
+                            <div class="label">案例 · 携程（B2C）与 小猪短租（C2C）对比</div>
+                            <p>携程作为OTA平台，直接向消费者销售酒店、机票等产品，属于典型的B2C模式；小猪短租连接房东与房客，平台不拥有房源，属于C2C模式。两者在运营逻辑、盈利方式上均有本质差异。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 知识点2 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <div class="left">
+                        <span class="icon">🏢</span>
+                        <span class="badge">盈利模式</span>
+                        <span class="title">2. B2B 盈利模式</span>
+                    </div>
+                    <span class="arrow">▾</span>
+                </div>
+                <div class="accordion-body">
+                    <div class="content">
+                        <p>B2B平台主要通过以下五种方式盈利：</p>
+                        <ul>
+                            <li><strong>广告费</strong>：供应商支付广告位费用。</li>
+                            <li><strong>订阅费</strong>：会员按月/年支付信息服务费。</li>
+                            <li><strong>交易佣金</strong>：按成交额抽取一定比例。</li>
+                            <li><strong>销售产品（服务）</strong>：平台自营或代理销售。</li>
+                            <li><strong>会员制</strong>：高级会员享受额外功能，收取年费。</li>
+                        </ul>
+                        <div class="case-box">
+                            <div class="label">案例 · 旅游通（B2B平台）</div>
+                            <p>旅游通为旅行社提供酒店、机票等资源批发，其收入主要来自供应商的广告位费和交易佣金，同时向采购方收取会员订阅费，以获取更优惠的协议价。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 知识点3 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <div class="left">
+                        <span class="icon">🛒</span>
+                        <span class="badge">盈利模式</span>
+                        <span class="title">3. B2C 盈利模式</span>
+                    </div>
+                    <span class="arrow">▾</span>
+                </div>
+                <div class="accordion-body">
+                    <div class="content">
+                        <p>B2C平台的主要盈利方式包括：</p>
+                        <ul>
+                            <li><strong>旅游广告</strong>：景区、酒店等投放广告。</li>
+                            <li><strong>订阅费</strong>：用户付费获取专属优惠或内容。</li>
+                            <li><strong>交易费</strong>：每笔订单抽取佣金。</li>
+                            <li><strong>产品销售</strong>：自营或代销旅游产品（如保险、签证）。</li>
+                        </ul>
+                        <div class="case-box">
+                            <div class="label">案例 · 飞猪旅行（B2C）</div>
+                            <p>飞猪作为阿里巴巴旗下平台，主要盈利来源包括：向商家收取交易佣金、广告推广费，以及通过“飞猪超级会员”等订阅服务获取收入。此外，飞猪还销售旅游保险、签证等增值服务。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 知识点4 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <div class="left">
+                        <span class="icon">🔧</span>
+                        <span class="badge">盈利模式</span>
+                        <span class="title">4. 其他盈利模式（ASP & X2X）</span>
+                    </div>
+                    <span class="arrow">▾</span>
+                </div>
+                <div class="accordion-body">
+                    <div class="content">
+                        <ul>
+                            <li><strong>ASP模式</strong>：应用服务提供商，为企业提供SaaS工具（如酒店管理系统、分销系统），按年/月收取服务费。</li>
+                            <li><strong>X2X模式</strong>：交易市场间信息交换，平台通过撮合不同交易市场获取数据或佣金。</li>
+                        </ul>
+                        <div class="case-box">
+                            <div class="label">案例 · 石基信息（ASP）</div>
+                            <p>石基信息为酒店、餐饮企业提供云PMS、数据分析等SaaS服务，每年收取系统使用费，属于典型的ASP盈利模式，帮助酒店提升运营效率。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 知识点5 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <div class="left">
+                        <span class="icon">🔄</span>
+                        <span class="badge">模式</span>
+                        <span class="title">5. O2O 与 B2B2C 模式解析</span>
+                    </div>
+                    <span class="arrow">▾</span>
+                </div>
+                <div class="accordion-body">
+                    <div class="content">
+                        <ul>
+                            <li><strong>O2O (Online to Offline)</strong>：线上引流，线下消费。如景区扫码购票、餐饮团购。核心是“线上支付，线下体验”。</li>
+                            <li><strong>B2B2C</strong>：供应商→平台→消费者。平台整合上游资源，打包成产品卖给终端用户。如携程的“机+酒”套餐、途牛的“跟团游”产品。</li>
+                        </ul>
+                        <div class="case-box">
+                            <div class="label">案例 · 美团（O2O）与 携程（B2B2C）</div>
+                            <p>美团以O2O起家，用户线上订餐、线下消费；携程的“度假产品”则整合了航空公司、酒店、地接社等供应商，打包后销售给消费者，属于B2B2C模式。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /accordion -->
+        <!-- ===== 课堂小测 ===== -->
+        <section class="quiz-section" id="quiz">
+            <h2>📝 课堂小测 · 分类与盈利模式</h2>
+            <p class="sub">共 10 题 · 覆盖分类和盈利模式 · 提交后查看对错</p>
+            <div id="quizContainer">
+                <!-- 由 JS 动态生成 -->
+            </div>
+            <div class="quiz-actions">
+                <button class="btn btn-primary" id="submitQuiz">✅ 提交答案</button>
+                <button class="btn btn-secondary" id="resetQuiz">🔄 重新作答</button>
+            </div>
+            <div id="scoreDisplay" class="quiz-score" style="display:none;"></div>
+        </section>
+        <!-- ===== 课程思政 · 案例研讨 ===== -->
+        <section class="sizheng-section" id="sizheng">
+            <h2>❤️ 课程思政 · 案例研讨</h2>
+            <p class="sub">
+                本专区结合旅游电商分类与盈利模式，选取近三年（2023—2026年）真实事件，聚焦
+                <strong>创新变革、契约精神、法治意识、合规经营</strong> 等核心价值。
+            </p>
+            <!-- 思政案例1 -->
+            <div class="sizheng-card">
+                <div class="card-header">
+                    <span class="case-badge">案例一</span>
+                    <span class="case-tag">🚀 变革创新 · 企业家精神</span>
+                    <span class="case-date">2022—2024年</span>
+                </div>
+                <div class="card-body">
+                    <div class="case-brief">
+                        <h4>📋 案例背景</h4>
+                        <p>
+                            2022年，飞猪旅行进行重大组织改革，强调“重服务、重履约”，将业务重心从“流量经营”转向“服务交付”。
+                            2023年，飞猪推出“匠筑”服务品牌，提升酒店、机票等履约质量。2024年，飞猪整合阿里生态，把高德、饿了么权益并入会员体系。
+                            改革后订单履约率提升、投诉下降，完成从流量平台到服务平台的转型。
+                        </p>
+                    </div>
+                    <div class="case-analysis">
+                        <h4>💡 思政分析</h4>
+                        <ul>
+                            <li><strong>变革是发展动力：</strong>面对行业竞争主动转型，体现唯改革者进、唯创新者强。</li>
+                            <li><strong>以客户为中心：</strong>放弃纯流量思维，回归服务本质，兼顾商业与社会责任。</li>
+                            <li><strong>企业家担当：</strong>敢于调整成熟业务，培养持续创新的职业素养。</li>
+                        </ul>
+                    </div>
+                    <div class="case-interact">
+                        <h4>🤔 互动讨论</h4>
+                        <p><strong>【选择题】</strong> 飞猪2022年改革的核心方向是：</p>
+                        <div class="interact-options">
+                            <label><input type="radio" name="sz1" value="A" /> A. 降低产品价格</label>
+                            <label><input type="radio" name="sz1" value="B" /> B. 从流量经营转向服务履约</label>
+                            <label><input type="radio" name="sz1" value="C" /> C. 关闭部分业务线</label>
+                            <label><input type="radio" name="sz1" value="D" /> D. 主攻海外市场</label>
+                        </div>
+                        <button class="btn-interact" onclick="checkSZ(1)">查看答案</button>
+                        <div class="interact-feedback" id="sz-feedback-1"></div>
+                        <p style="margin-top:12px;"><strong>【简答题】</strong> 结合飞猪案例，谈谈企业为何需要持续创新？作为未来旅游从业者如何培养创新意识？</p>
+                    </div>
+                </div>
+            </div>
+            <!-- 思政案例2 -->
+            <div class="sizheng-card">
+                <div class="card-header">
+                    <span class="case-badge">案例二</span>
+                    <span class="case-tag">⚖️ 合规经营 · 法治意识</span>
+                    <span class="case-date">2023—2025年</span>
+                </div>
+                <div class="card-body">
+                    <div class="case-brief">
+                        <h4>📋 案例背景</h4>
+                        <p>
+                            文旅部2023年发文禁止在线旅游大数据杀熟、虚假宣传；2024市监总局专项检查OTA；2025广东平台因价格歧视被罚；2026行业签署自律公约，承诺透明定价。
+                        </p>
+                    </div>
+                    <div class="case-analysis">
+                        <h4>💡 思政分析</h4>
+                        <ul>
+                            <li><strong>法治护航营商环境：</strong>监管划定红线，保障公平竞争。</li>
+                            <li><strong>大企业承担更大责任：</strong>不能利用算法损害消费者公平交易权。</li>
+                            <li><strong>合规是长期发展底线：</strong>失信处罚成本高，诚信经营才能长久。</li>
+                        </ul>
+                    </div>
+                    <div class="case-interact">
+                        <h4>🤔 互动讨论</h4>
+                        <p><strong>【选择题】</strong> 政策明确禁止以下哪种行为？</p>
+                        <div class="interact-options">
+                            <label><input type="radio" name="sz2" value="A" /> A. 会员折扣</label>
+                            <label><input type="radio" name="sz2" value="B" /> B. 大数据杀熟</label>
+                            <label><input type="radio" name="sz2" value="C" /> C. 定制套餐</label>
+                            <label><input type="radio" name="sz2" value="D" /> D. 航企合作</label>
+                        </div>
+                        <button class="btn-interact" onclick="checkSZ(2)">查看答案</button>
+                        <div class="interact-feedback" id="sz-feedback-2"></div>
+                        <p style="margin-top:12px;"><strong>【简答题】</strong> 旅游电商如何平衡盈利与合规经营？</p>
+                    </div>
+                </div>
+            </div>
+            <!-- 思政案例3 -->
+            <div class="sizheng-card">
+                <div class="card-header">
+                    <span class="case-badge">案例三</span>
+                    <span class="case-tag">🤝 契约精神 · 诚信经营</span>
+                    <span class="case-date">2024—2025年</span>
+                </div>
+                <div class="card-body">
+                    <div class="case-brief">
+                        <h4>📋 案例背景</h4>
+                        <p>
+                            C2C短租平台频繁出现虚假房源、房东临时退订；2024上海消保委约谈平台；2025某平台幽灵房源曝光，房源下架、房东扣分；国家将住宿失信纳入联合惩戒。
+                        </p>
+                    </div>
+                    <div class="case-analysis">
+                        <h4>💡 思政分析</h4>
+                        <ul>
+                            <li><strong>诚信是市场根基：</strong>C2C完全依靠双方信任，失信破坏整个业态。</li>
+                            <li><strong>契约精神是商业文明：</strong>下单即形成约定，擅自毁约违背诚信。</li>
+                            <li><strong>信用体系约束行为：</strong>一处失信处处受限，全社会共建诚信环境。</li>
+                        </ul>
+                    </div>
+                    <div class="case-interact">
+                        <h4>🤔 互动讨论</h4>
+                        <p><strong>【选择题】</strong> C2C短租平台最大治理难点是？</p>
+                        <div class="interact-options">
+                            <label><input type="radio" name="sz3" value="A" /> A. 房东房客信任建立</label>
+                            <label><input type="radio" name="sz3" value="B" /> B. 广告投放</label>
+                            <label><input type="radio" name="sz3" value="C" /> C. 开发成本</label>
+                            <label><input type="radio" name="sz3" value="D" /> D. 房屋装修</label>
+                        </div>
+                        <button class="btn-interact" onclick="checkSZ(3)">查看答案</button>
+                        <div class="interact-feedback" id="sz-feedback-3"></div>
+                        <p style="margin-top:12px;"><strong>【简答题】</strong> 谈谈诚信、契约在电商中的作用，个人如何践行诚信？</p>
+                    </div>
+                </div>
+            </div>
+            <!-- 思政小结 -->
+            <div class="sizheng-summary">
+                <h4>📖 课程思政 · 小结</h4>
+                <p>
+                    通过以上案例，我们深刻认识到：<br>
+                    <strong>①</strong> 企业必须坚持<strong>变革创新</strong>，主动适应市场变化，以服务为本，弘扬企业家精神；<br>
+                    <strong>②</strong> 必须严守<strong>法律法规</strong>，将合规经营作为发展底线，维护公平竞争的市场秩序；<br>
+                    <strong>③</strong> 必须弘扬<strong>诚信与契约精神</strong>，在C2C等模式中构建互信生态，让失信者寸步难行。<br><br>
+                    习近平总书记指出：“<strong>法治是最好的营商环境</strong>”、“<strong>人无信不立，业无信不兴</strong>”。旅游电子商务的发展，必须将诚信、法治、创新融为一体，才能实现高质量可持续发展。
+                </p>
+            </div>
+        </section>
+        <!-- ===== 页脚 ===== -->
+        <div class="footer">
+            📚 漳州高新职业技术学校 · 旅游电子商务 &nbsp;|&nbsp; 模块一 任务三 &nbsp;|&nbsp; 2026年
+        </div>
+    </div><!-- /container -->
+    <!-- ============================================================ -->
+    <!--  JavaScript 交互                                               -->
+    <!-- ============================================================ -->
+    <script>
+        // 手风琴交互已完全移除，全部内容永久展开
+        // ============================================================
+        // 课堂小测数据（10题）
+        // ============================================================
+        const quizData = [
+            { id: 0, question: '携程旅行网属于以下哪种电子商务分类？', options: ['B2B', 'B2C', 'C2C', 'B2G'], answer: 1 },
+            { id: 1, question: '小猪短租属于以下哪种分类？', options: ['B2B', 'B2C', 'C2C', 'O2O'], answer: 2 },
+            { id: 2, question: '旅行社之间批量采购酒店房源属于？', options: ['B2B', 'B2C', 'C2C', 'B2G'], answer: 0 },
+            { id: 3, question: '消费者发布需求，旅行社竞标定制游是？', options: ['B2C', 'C2B', 'B2B', 'O2O'], answer: 1 },
+            { id: 4, question: '不属于B2B盈利模式的是？', options: ['广告费', '订阅费', '交易佣金', '零售给个人'], answer: 3 },
+            { id: 5, question: '飞猪向商家抽取订单费用属于？', options: ['广告费', '交易费', '订阅费', '会员费'], answer: 1 },
+            { id: 6, question: '酒店PMS按年收费属于？', options: ['ASP', 'X2X', 'B2C', 'C2C'], answer: 0 },
+            { id: 7, question: '美团线上下单线下消费是？', options: ['B2B', 'B2C', 'O2O', 'C2C'], answer: 2 },
+            { id: 8, question: '携程整合供应商打包售卖是？', options: ['B2B', 'B2C', 'B2B2C', 'C2C'], answer: 2 },
+            { id: 9, question: 'B2C常见盈利方式包含？', options: ['商家广告', '会员订阅', '自营产品', '以上全部'], answer: 3 }
+        ];
+        // 渲染题目
+        const container = document.getElementById('quizContainer');
+        function renderQuiz() {
+            let html = '';
+            quizData.forEach((q, idx) => {
+                html += `
+                    <div class="quiz-item" data-qid="${q.id}">
+                        <div class="q"><span class="qnum">${idx + 1}.</span> ${q.question}</div>
+                        <div class="options">
+                            ${q.options.map((opt, oi) => `
+                                <label>
+                                    <input type="radio" name="q${q.id}" value="${oi}" />
+                                    ${String.fromCharCode(65 + oi)}. ${opt}
+                                </label>
+                            `).join('')}
+                        </div>
+                        <div class="feedback" data-feedback="${q.id}"></div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+        renderQuiz();
+        // 提交&重置
+        const submitBtn = document.getElementById('submitQuiz');
+        const resetBtn = document.getElementById('resetQuiz');
+        const scoreDisplay = document.getElementById('scoreDisplay');
+        function clearFeedback() {
+            document.querySelectorAll('.feedback').forEach(el => {
+                el.classList.remove('show', 'correct', 'wrong');
+                el.textContent = '';
+            });
+            document.querySelectorAll('.quiz-item').forEach(el => el.classList.remove('correct', 'wrong'));
+            scoreDisplay.style.display = 'none';
+        }
+        function resetRadios() {
+            document.querySelectorAll('.quiz-item input').forEach(input => input.checked = false);
+            clearFeedback();
+        }
+        resetBtn.addEventListener('click', resetRadios);
+        submitBtn.addEventListener('click', () => {
+            clearFeedback();
+            let correctCount = 0;
+            quizData.forEach(q => {
+                const sel = document.querySelector(`input[name="q${q.id}"]:checked`);
+                const fb = document.querySelector(`.feedback[data-feedback="${q.id}"]`);
+                const item = fb.closest('.quiz-item');
+                if (!sel) {
+                    fb.textContent = '⚠️ 请选择选项';
+                    fb.className = 'feedback show wrong';
+                    item.classList.add('wrong');
+                    return;
+                }
+                const val = Number(sel.value);
+                if (val === q.answer) {
+                    correctCount++;
+                    fb.textContent = '✅ 回答正确';
+                    fb.className = 'feedback show correct';
+                    item.classList.add('correct');
+                } else {
+                    fb.textContent = `❌ 错误，正确：${String.fromCharCode(65 + q.answer)}.${q.options[q.answer]}`;
+                    fb.className = 'feedback show wrong';
+                    item.classList.add('wrong');
+                }
+            });
+            const total = quizData.length;
+            scoreDisplay.style.display = 'block';
+            scoreDisplay.textContent = `📊 得分：${correctCount}/${total}（${Math.round(correctCount/total*100)}%）`;
+            score.scrollIntoView({behavior:'smooth'});
+        });
+        // 思政答题逻辑
+        const szAnswers = {
+            1:{correct:'B',explain:'✅正确，飞猪改革核心是从流量经营转向服务履约'},
+            2:{correct:'B',explain:'✅正确，政策明令禁止大数据杀熟价格歧视'},
+            3:{correct:'A',explain:'✅正确，C2C短租最大问题是买卖双方信任缺失'}
+        };
+        function checkSZ(id){
+            const radios = document.querySelectorAll(`input[name="sz${id}"]`);
+            let sel = null;
+            radios.forEach(r=>{if(r.checked) sel=r.value;});
+            const fb = document.getElementById(`sz-feedback-${id}`);
+            const ans = szAnswers[id];
+            if(!sel){
+                fb.textContent='⚠️请先选择答案';
+                fb.className='interact-feedback show wrong';
+                return;
+            }
+            if(sel === ans.correct){
+                fb.textContent=ans.explain;
+                fb.className='interact-feedback show correct';
+            }else{
+                fb.textContent=`❌错误，正确答案${ans.correct}。${ans.explain.replace('✅正确，','')}`;
+                fb.className='interact-feedback show wrong';
+            }
+        }
+    </script>
+</body>
+</html>
